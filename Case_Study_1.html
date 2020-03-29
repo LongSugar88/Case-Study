@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border: 1px solid;
+            background-color: #f1f1f1;
+        }
+    </style>
+    <script src="Case_Study_1.js"></script>
+</head>
+<body onload="startGame()" onkeydown="moveKey(event)">
+<div style="text-align: center; width: 630px">
+    <button onmouseup = clearMove() onmousedown= moveUp() style=" width: 60px; height: 40px; color: #66bd02; background-color: white" ><b>UP</b></button><br>
+    <button onmouseup = clearMove() onmousedown= moveLeft() style=" width: 60px; height: 40px; color: #00bdb8; background-color: white" ><b>LEFT</b></button>
+    <button onmouseup = clearMove() onmousedown= moveRight() style=" width: 60px; height: 40px; color: #bd0b00; background-color: white" ><b>RIGHT</b></button>
+    <br>
+    <button onmouseup = clearMove() onmousedown= moveDown() style=" width: 60px; height: 40px; color: #6100bd; background-color: white" ><b>DOWN</b></button>
+</div>
+<script>
+    function moveKey(event) {
+        switch (event.keyCode){
+            case 37 :
+                moveLeftKey();
+                break;
+            case 38 :
+                moveUpKey();
+                break;
+            case 39 :
+                moveRightKey();
+                // onmousedown = clearMove()
+                break;
+            case 40 :
+                moveDownKey();
+                break;
+        }
+
+    }
+</script>
+</body>
+</html>
