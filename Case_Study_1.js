@@ -167,6 +167,30 @@ function updateGameArea(){
         }
         return image;
     }
+    function flappyType() {
+        let image ='';
+        switch (randomNumber(6,1)) {
+            case 1:
+                image = 'https://media3.giphy.com/media/ly11KJIWG310Q/source.gif';
+                break;
+            case 2:
+                image = './image/flappy_1.png';
+                break;
+            case 3:
+                image = './image/flappy_2.png';
+                break;
+            case 4:
+                image = './image/flappy_3.png';
+                break;
+            case 5:
+                image = './image/flappy_4.png';
+                break;
+            case 6:
+                image = './image/flappy_5.png';
+                break;
+        }
+        return image;
+    }
     if(GameArea.frameNo == 1 || obsAppearCondition(200)){
         x = GameArea.canvas.width;
         minHeight = 20;
@@ -179,7 +203,7 @@ function updateGameArea(){
         flappy_Y = randomNumber(height+space-flappy_Width,height+flappy_Width) - Number(flappy_Width);
         let obstacle1 = new Component(30, height, 'https://i.imgur.com/6D49450.png' , x, 0, 'image');
         let obstacle2 = new Component(30,x - height - space,'https://i.imgur.com/6D49450.png', x, height+space, 'image' );
-        let flappyBird = new Component(flappy_Width,flappy_Width,'https://i.imgur.com/pNbhCD4.png', x,flappy_Y, 'image' );
+        let flappyBird = new Component(flappy_Width,flappy_Width,flappyType(), x,flappy_Y, 'image' );
         obstacles.push(obstacle1);
         obstacles.push(obstacle2);
         flappy_Bird.push(flappyBird);
