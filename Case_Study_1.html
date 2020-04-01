@@ -16,7 +16,19 @@
     <script src="UpdateGameArea.js"></script>
 </head>
 <body onload="startGame()" onkeydown="moveKey(event)">
+<textarea name="" id="" cols="32" rows="28">
+    - You need 3 or more points to unlock bullet's bird ability. Your LP will decrease by 1 after you fire a bullet.
+
+    - You can fire a bullet bird to destroy an obstacle, or flappy bird.
+
+    - If you dive the piple, the game will be ended.
+
+    - if you take a flappy bird, your LP will be half.
+
+    - The speed will increase once per 10 LP.
+</textarea>
 <div style="text-align: center; width: 630px">
+
     <button onmouseup = clearMove() onmousedown= moveUp() style=" width: 60px; height: 40px; color: #66bd02; background-color: white" ><b>UP</b></button><br>
     <button onmouseup = clearMove() onmousedown= moveLeft() style=" width: 60px; height: 40px; color: #00bdb8; background-color: white" ><b>LEFT</b></button>
     <button onclick="imperialOrder()" style=" width: 60px; height: 40px; color: black; background-color: red" ><b>FIRE</b></button>
@@ -25,6 +37,7 @@
     <button onmouseup = clearMove() onmousedown= moveDown() style=" width: 60px; height: 40px; color: #6100bd; background-color: white" ><b>DOWN</b></button>
     <button onmousedown="changeKey()" onmouseup="pauseGame()" style=" width: 60px; height: 40px; color: #6100bd; background-color: white" ><b>PAUSE</b></button>
 </div>
+
 <script>
     function moveKey(event) {
         switch (event.keyCode){
