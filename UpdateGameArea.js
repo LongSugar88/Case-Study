@@ -25,6 +25,7 @@ function updateGameArea(){
     checkCollistion(bullet,obstacles);
     checkCollistion(bullet,flappy_Bird);
     GameArea.clear();
+    background.speedX = -0.5;
     background.newPosition();
     background.update();
     GameArea.frameNo += 1;
