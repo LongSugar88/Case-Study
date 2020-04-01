@@ -16,23 +16,26 @@
     <script src="UpdateGameArea.js"></script>
 </head>
 <body onload="startGame()" onkeydown="moveKey(event)">
-<textarea name="" id="" cols="32" rows="28">
-    - Press "Enter" to fire a bullet, press "Ctrl" to Pause/Resume game, use the arrows on keyboard to move top, down, right, left.
+<textarea name="" id="" cols="42" rows="28">
+    - Press "Enter" to fire a bullet, press "Ctrl" to Pause/Resume game, use the arrows on keyboard to move Top, Down, Left, Right
 
-    - You need 4 or more points to unlock bird's bullet ability. Your LP will decrease by 1 after you fire a bullet.
+    - You need more than 3 points to unlock bird's bullet ability. Your points will decrease by 1 after you fire a bullet.
 
     - You can fire a bird bullet  to destroy an obstacle, or a flappy bird.
 
+    - In case you use bird's bullet to against flappy bird, during power caculation, if your bullet size is small than that flappy bird, your bullet will be negatived and your point will decrease by 1.
+
+    - if you collide with a flappy bird, your point will be half.
+
     - If you dive to the pipes, the game will be ended.
 
-    - if you take a flappy bird, your LP will be half.
-
-    - The speed will increase once per 10 LP.
+    - The speed will increase once per 10 point.
 </textarea>
-<div style="text-align: right; width: 680px">
-    <button onmousedown="changeKey()" onmouseup="pauseGame()" style=" width: 180px; height: 40px; color: white; background-color: black" ><b>PAUSE</b></button>
-</div>
 <div style="text-align: center; width: 630px">
+    <button onmousedown="location.reload()"  style=" width: 180px; height: 40px; color: black; background-color: yellow" ><b>PLAY</b></button>
+    <button onmousedown="changeKey()" onmouseup="pauseGame()" style=" width: 180px; height: 40px; color: yellow; background-color: black" ><b>PAUSE</b></button>
+</div>
+<div style="text-align: center; width: 630px; border:1px; border-color: #bd0b00" >
 
     <button onmouseup = clearMove() onmousedown= moveUp() style=" width: 60px; height: 40px; color: #66bd02; background-color: white" ><b>UP</b></button><br>
     <button onmouseup = clearMove() onmousedown= moveLeft() style=" width: 60px; height: 40px; color: #00bdb8; background-color: white" ><b>LEFT</b></button>
