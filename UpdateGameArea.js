@@ -1,6 +1,5 @@
 function updateGameArea(){
     let x, height, space, maxHeight, minHeight,maxSpace, minSpace;
-    timeOut = setTimeout(updateGameArea, timeUpdate);
     for(let i=0; i<obstacles.length; i++){
         if(player.checkDivePoint(obstacles[i])){
             GameArea.stop();
