@@ -1,12 +1,12 @@
 function updateGameArea(){
     let x, height, space, maxHeight, minHeight,maxSpace, minSpace;
-    // timeOut = setTimeout(updateGameArea, timeUpdate);
-    // for(let i=0; i<obstacles.length; i++){
-    //     if(player.checkDivePoint(obstacles[i])){
-    //         GameArea.stop();
-    //         return
-    //     }
-    // }
+    timeOut = setTimeout(updateGameArea, timeUpdate);
+    for(let i=0; i<obstacles.length; i++){
+        if(player.checkDivePoint(obstacles[i])){
+            GameArea.stop();
+            return
+        }
+    }
     for(let j=0; j<flappy_Bird.length; j++) {
         if (player.checkDivePoint(flappy_Bird[j])) {
             flappy_Bird.splice(j,1);
