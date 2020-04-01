@@ -1,12 +1,12 @@
 function updateGameArea(){
     let x, height, space, maxHeight, minHeight,maxSpace, minSpace;
     // timeOut = setTimeout(updateGameArea, timeUpdate);
-    for(let i=0; i<obstacles.length; i++){
-        if(player.checkDivePoint(obstacles[i])){
-            GameArea.stop();
-            return
-        }
-    }
+    // for(let i=0; i<obstacles.length; i++){
+    //     if(player.checkDivePoint(obstacles[i])){
+    //         GameArea.stop();
+    //         return
+    //     }
+    // }
     for(let j=0; j<flappy_Bird.length; j++) {
         if (player.checkDivePoint(flappy_Bird[j])) {
             flappy_Bird.splice(j,1);
@@ -97,12 +97,13 @@ function updateGameArea(){
         let flappyBird = new Component(flappy_Width,flappy_Width,flappyType(), x,flappy_Y, 'image' );
         obstacles.push(obstacle1);
         obstacles.push(obstacle2);
+        obstaclesInvisible.push(obstacle1);
         flappy_Bird.push(flappyBird);
     }
-    if(order && GameArea.score > 50){
+    if(order && GameArea.score > 3){
         let bullet1 = new Component(PLAYER_WIDTH, PLAYER_HEIGHT,bulletType(), player.x + player.width, player.y, 'image')
         bullet.push(bullet1);
-        GameArea.score -= 10;
+        GameArea.score -= 1;
         order = false;
     }
     else {
@@ -119,30 +120,32 @@ function updateGameArea(){
         flappy_Bird[i].update();
     }
     for(let i=0; i<obstacles.length; i++){
-        if(GameArea.score >50){
-            obstacles[i].speedX = -1-(GameArea.score-(GameArea.score%50))/50*0.2;
+        if(GameArea.score >10){
+            obstacles[i].speedX = -1-(GameArea.score-(GameArea.score%10))/10*0.2;
         } else {
             obstacles[i].speedX = -1;
         }
-        console.log(obstacles[i].speedX)
         obstacles[i].newPosition();
         obstacles[i].update()
     }
-    let highesScore = localStorage.getItem('hightScore');
-    for(let i=0; i<obstacles.length; i++){
-        if(player.x+player.width > obstacles[i].x+obstacles[i].width/2 && player.x+player.width < obstacles[i].x+obstacles[i].width){
+    let highesScore = localStorage.getItem('hightScore1');
+    for(let i=0; i<obstaclesInvisible.length; i++){
+        let distance = obstaclesInvisible[i].x + obstaclesInvisible[i].width - player.x - player.width;
+        if(distance <= 2*obstaclesInvisible[i].width/3){
             GameArea.score += 1;
+            obstaclesInvisible.splice(i,1);
+            break;
+        }
             if(GameArea.score <= 0){
                 GameArea.score = 0;
             }
             if(GameArea.score > highesScore){
                 highesScore = parseInt(GameArea.score);
-                localStorage.setItem('hightScore', parseInt(GameArea.score))
+                localStorage.setItem('hightScore1', parseInt(GameArea.score))
             }
-        }
     }
-    myScore.text = 'SCORE: ' + parseInt(GameArea.score);
-    highestSocre.text = 'HIGHEST SCORE : ' + parseInt(highesScore);
+    myScore.text = 'SCORE: ' + GameArea.score.toFixed(1);
+    highestSocre.text = 'HIGHEST SCORE : ' + Number(highesScore).toFixed(1);
     highestSocre.update();
     myScore.update();
     player.newPosition();

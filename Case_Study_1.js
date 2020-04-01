@@ -5,6 +5,7 @@ function startGame() {
     myScore = new Component('30px','Consolas','yellow', 480, 40,'text');
     highestSocre = new Component('30px','Consolas','black', 20, 40,'text');
     GameArea.start()
+    GameArea.intervalTime()
 }
 let order = false;
 function imperialOrder() {
