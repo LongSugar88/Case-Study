@@ -2,9 +2,14 @@
 function startGame() {
     player = new Component(PLAYER_WIDTH, PLAYER_HEIGHT,'https://i.imgur.com/pNbhCD4.png', POSITION_X, POSITION_Y,'image');
     background = new Component(BACKGROUND_WIDTH, BACKGROUND_HEIGHT, 'https://i.imgur.com/bgWwpBT.jpg', 0, 0, 'background');
-    background.setSpeedX(-0.1);
-    myScore = new Component('30px','Consolas','yellow', 280, 40,'text');
+    myScore = new Component('30px','Consolas','yellow', 480, 40,'text');
+    highestSocre = new Component('30px','Consolas','black', 20, 40,'text');
     GameArea.start()
+}
+let order = false;
+function imperialOrder() {
+    order = true;
+    return order;
 }
 function moveUp() {
     player.speedY = -1;

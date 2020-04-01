@@ -1,25 +1,10 @@
 function updateGameArea(){
     let x, height, space, maxHeight, minHeight,maxSpace, minSpace;
+    // timeOut = setTimeout(updateGameArea, timeUpdate);
     for(let i=0; i<obstacles.length; i++){
         if(player.checkDivePoint(obstacles[i])){
             GameArea.stop();
             return
-        }
-    }
-    for (i=0; i<bullet.length; i++){
-        for(let j=0; j<obstacles.length; j++){
-            if(bullet[i].checkDivePoint(obstacles[j])){
-                obstacles.splice(j,1);
-                bullet.splice(i,1);
-            }
-        }
-    }
-    for (i=0; i<bullet.length; i++){
-        for(let j=0; j<flappy_Bird.length; j++){
-            if(bullet[i].checkDivePoint(flappy_Bird[j])){
-                flappy_Bird.splice(j,1);
-                bullet.splice(i,1);
-            }
         }
     }
     for(let j=0; j<flappy_Bird.length; j++) {
@@ -28,10 +13,23 @@ function updateGameArea(){
             GameArea.score *= 0.5;
         }
     }
+    function checkCollistion(objA,objB) {
+        for (i=0; i<objA.length; i++){
+            for(let j=0; j<objB.length; j++){
+                if(objA[i].checkDivePoint(objB[j])){
+                    objA.splice(i,1);
+                    objB.splice(j,1);
+                }
+            }
+        }
+    }
+    checkCollistion(bullet,obstacles);
+    checkCollistion(bullet,flappy_Bird);
     GameArea.clear();
     background.newPosition();
     background.update();
     GameArea.frameNo += 1;
+
     function randomNumber(max, min) {
         let random = Math.floor(Math.random()*(max-min+1)+min);
         return random
@@ -84,7 +82,7 @@ function updateGameArea(){
         }
         return image;
     }
-    if(GameArea.frameNo == 1 || obsAppearCondition(200)){
+    if(GameArea.frameNo == 1 || obsAppearCondition()){
         x = GameArea.canvas.width;
         minHeight = 20;
         maxHeight = 200;
@@ -101,20 +99,14 @@ function updateGameArea(){
         obstacles.push(obstacle2);
         flappy_Bird.push(flappyBird);
     }
-    let order = false;
-    function imperialOrder() {
-        order = true;
-        return order;
-    }
-    if(order && GameArea.score/2 > 3 ){
+    if(order && GameArea.score > 50){
         let bullet1 = new Component(PLAYER_WIDTH, PLAYER_HEIGHT,bulletType(), player.x + player.width, player.y, 'image')
         bullet.push(bullet1);
-        GameArea.score -= 2;
+        GameArea.score -= 10;
         order = false;
-        // }
-    } else {
+    }
+    else {
         order = false
-        console.log(order)
     }
     for( let i=0; i<bullet.length; i++){
         bullet[i].speedX = 3;
@@ -127,25 +119,40 @@ function updateGameArea(){
         flappy_Bird[i].update();
     }
     for(let i=0; i<obstacles.length; i++){
-        if(GameArea.score >0 && parseInt(GameArea.score)/2 %5 == 0 ) {
-            obstacles[i].setSpeedX(-0.1)
+        if(GameArea.score >50){
+            obstacles[i].speedX = -1-(GameArea.score-(GameArea.score%50))/50*0.2;
         } else {
             obstacles[i].speedX = -1;
         }
+        console.log(obstacles[i].speedX)
         obstacles[i].newPosition();
         obstacles[i].update()
     }
+    let highesScore = localStorage.getItem('hightScore');
     for(let i=0; i<obstacles.length; i++){
-        if(player.x == obstacles[i].x+ obstacles[i].width){
-            GameArea.score++
+        if(player.x+player.width > obstacles[i].x+obstacles[i].width/2 && player.x+player.width < obstacles[i].x+obstacles[i].width){
+            GameArea.score += 1;
+            if(GameArea.score <= 0){
+                GameArea.score = 0;
+            }
+            if(GameArea.score > highesScore){
+                highesScore = parseInt(GameArea.score);
+                localStorage.setItem('hightScore', parseInt(GameArea.score))
+            }
         }
     }
-    myScore.text = 'SCORE: ' + GameArea.score/2;
+    myScore.text = 'SCORE: ' + parseInt(GameArea.score);
+    highestSocre.text = 'HIGHEST SCORE : ' + parseInt(highesScore);
+    highestSocre.update();
     myScore.update();
     player.newPosition();
     player.update();
-};
-function obsAppearCondition(n){
-    if((GameArea.frameNo/n) % 1 == 0 ) { return true};
-    return false;
+}
+function obsAppearCondition() {
+    let distanceObs = GameArea.canvas.width - obstacles[obstacles.length-1].x;
+    if(distanceObs >= 200){
+        return true;
+    } else {
+        return false;
+    }
 }

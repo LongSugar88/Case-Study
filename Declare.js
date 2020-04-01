@@ -1,6 +1,7 @@
 let player;
 let background;
 let myScore;
+let highestSocre;
 let obstacles = [];
 let bullet = [];
 let flappy_Bird = [];

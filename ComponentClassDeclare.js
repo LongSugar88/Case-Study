@@ -10,8 +10,8 @@ let Component = function (width, height, color, x, y, type){
         this.image = new Image();
         this.image.src = color;
     }
-    this.setSpeedX = function (speed) {
-        this.speedX += speed;
+    this.setSpeedX = function (m) {
+        this.speedX = m*this.speedX;
         return this.speedX;
     }
     this.update = function () {
@@ -31,7 +31,7 @@ let Component = function (width, height, color, x, y, type){
             ctx.fillRect(this.x, this.y, this.width, this.height)
         }
     }
-    this.newPosition = function(){
+    this.newPosition = function(){ // không hoạt động
         this.x += this.speedX;
         this.y += this.speedY;
         if(this.type == 'background'){
