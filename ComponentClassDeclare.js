@@ -10,10 +10,6 @@ let Component = function (width, height, color, x, y, type){
         this.image = new Image();
         this.image.src = color;
     }
-    this.setSpeedX = function (m) {
-        this.speedX = m*this.speedX;
-        return this.speedX;
-    }
     this.update = function () {
         let ctx = GameArea.context;
         if(this.type == 'text'){
