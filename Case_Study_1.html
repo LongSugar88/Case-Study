@@ -17,6 +17,8 @@
 </head>
 <body onload="startGame()" onkeydown="moveKey(event)">
 <textarea name="" id="" cols="32" rows="28">
+    - Press "Enter" to fire a bullet, press "Ctrl" to Pause/Resume game, use the arrows on keyboard to move top, down, right, left.
+
     - You need 4 or more points to unlock bird's bullet ability. Your LP will decrease by 1 after you fire a bullet.
 
     - You can fire a bird bullet  to destroy an obstacle, or a flappy bird.
@@ -27,6 +29,9 @@
 
     - The speed will increase once per 10 LP.
 </textarea>
+<div style="text-align: right; width: 680px">
+    <button onmousedown="changeKey()" onmouseup="pauseGame()" style=" width: 180px; height: 40px; color: white; background-color: black" ><b>PAUSE</b></button>
+</div>
 <div style="text-align: center; width: 630px">
 
     <button onmouseup = clearMove() onmousedown= moveUp() style=" width: 60px; height: 40px; color: #66bd02; background-color: white" ><b>UP</b></button><br>
@@ -35,14 +40,19 @@
     <button onmouseup = clearMove() onmousedown= moveRight() style=" width: 60px; height: 40px; color: #bd0b00; background-color: white" ><b>RIGHT</b></button>
     <br>
     <button onmouseup = clearMove() onmousedown= moveDown() style=" width: 60px; height: 40px; color: #6100bd; background-color: white" ><b>DOWN</b></button>
-    <button onmousedown="changeKey()" onmouseup="pauseGame()" style=" width: 60px; height: 40px; color: #6100bd; background-color: white" ><b>PAUSE</b></button>
+    <br>
+
 </div>
 
 <script>
     function moveKey(event) {
         switch (event.keyCode){
             case 13:
-                imperialOrder()
+                imperialOrder();
+                break;
+            case 17:
+                changeKey();
+                pauseGame();
                 break;
             case 37 :
                 moveLeftKey();

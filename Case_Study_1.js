@@ -1,12 +1,14 @@
 
 function startGame() {
     player = new Component(PLAYER_WIDTH, PLAYER_HEIGHT,'https://i.imgur.com/pNbhCD4.png', POSITION_X, POSITION_Y,'image');
-    background = new Component(BACKGROUND_WIDTH, BACKGROUND_HEIGHT, 'https://i.imgur.com/bgWwpBT.jpg', 0, 0, 'background');
-    myScore = new Component('30px','Consolas','yellow', 480, 40,'text');
-    highestSocre = new Component('30px','Consolas','black', 20, 40,'text');
+    background = new Component(BACKGROUND_WIDTH, BACKGROUND_HEIGHT, './image/background.jpg', 0, 0, 'background');
+    myScore = new Component('30px','Consolas','white', 480, 40,'text');
+    highestSocre = new Component('30px','Consolas','white', 20, 40,'text');
     GameArea.start()
-    GameArea.intervalTime()
+    updateGameArea()
+    // GameArea.intervalTime()
 }
+
 let order = false;
 function imperialOrder() {
     order = true;

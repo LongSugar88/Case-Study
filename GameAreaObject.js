@@ -7,15 +7,19 @@ let GameArea = {
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
         this.score = 0;
+        // this.interval = setInterval(updateGameArea, 20)
     },
-    intervalTime: function(){
-        this.interval = setInterval(updateGameArea, 20)
-    },
+    // intervalTime: function(){
+    //     this.interval = setInterval(updateGameArea, 20)
+    // },
     clear: function(){
         this.context.clearRect(0,0,this.canvas.width,this.canvas.height);
     },
+    // stop: function() {
+    //     clearInterval(this.interval);
+    // },
     stop: function () {
-        clearInterval(this.interval);
+        clearTimeout(timeUpdate);
     },
 };
 function changeKey(){
@@ -32,11 +36,13 @@ function changeKey(){
 function pauseGame() {
     if(key){
         console.log('true stop game ' +key);
-        GameArea.stop();
+        // clearInterval(GameArea.interval);
+        clearTimeout(timeUpdate)
         return;
     } else {
         console.log('false resume game ' + key);
-        setTimeout(GameArea.intervalTime, 1);
+        // setTimeout(GameArea.intervalTime, 1);
+        updateGameArea()
         return;
     }
 };

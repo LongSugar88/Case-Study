@@ -5,6 +5,7 @@ let highestSocre;
 let key = false;
 let obstacles = [];
 let obstaclesInvisible = [];
+let timeUpdate;
 let bullet = [];
 let flappy_Bird = [];
 const PLAYER_WIDTH = 60;
