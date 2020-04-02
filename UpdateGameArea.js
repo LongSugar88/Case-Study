@@ -27,11 +27,12 @@ function updateGameArea(){
         for (i=0; i<bullet.length; i++){
             for(let j=0; j<flappy_Bird.length; j++){
                 if(bullet[i].checkDivePoint(flappy_Bird[j])){
-                    if(bullet_Width >= flappy_Width){
+                    if(bullet[i].width >= flappy_Bird[j].width){
                         flappy_Bird.splice(j,1);
                         bullet.splice(i,1);
                     } else
                     bullet.splice(i,1);
+                    GameArea.score--;
                 }
             }
         }
@@ -62,7 +63,7 @@ function updateGameArea(){
         flappy_Bird.push(flappyBird);
     }
     if(order && GameArea.score > 3){
-        let bullet1 = new Component(bullet_Width, bullet_Width, bulletType(), player.x, player.y + player.height/2, 'image');
+        let bullet1 = new Component(bullet_Width, bullet_Width, bulletType(), player.x-player.width/4, player.y + player.height/2, 'image');
         bullet.push(bullet1);
         GameArea.score -= 1;
         order = false;
