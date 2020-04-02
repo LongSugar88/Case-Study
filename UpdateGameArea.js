@@ -38,62 +38,11 @@ function updateGameArea(){
     checkCollistion(bullet,obstacles);
     GameArea.clear();
     background.speedX = -0.5;
+    // player.speedX = 0.1;
     background.newPosition();
     background.update();
     GameArea.frameNo += 1;
 
-    function randomNumber(max, min) {
-        let random = Math.floor(Math.random()*(max-min+1)+min);
-        return random
-    }
-    function bulletType() {
-        let image = "";
-        switch (randomNumber(6,1)) {
-            case 1:
-                image = './image/bullet_flappy_1.png' // Bullet 1
-                break;
-            case 2:
-                image = './image/bullet_flappy_2.png'  // Bullet 2
-                break;
-            case 3:
-                image = './image/bullet_flappy_3.png'  //Bullet 3
-                break;
-            case 4:
-                image = './image/bullet_flappy_4.png' //Bullet 4
-                break;
-            case 5:
-                image = './image/bullet_flappy_5.png' //Bullet 4
-                break;
-            case 6:
-                image = './image/bullet_flappy_6.png' //Bullet 4
-                break;
-        }
-        return image;
-    }
-    function flappyType() {
-        let image ='';
-        switch (randomNumber(6,1)) {
-            case 1:
-                image = 'https://media3.giphy.com/media/ly11KJIWG310Q/source.gif';
-                break;
-            case 2:
-                image = './image/flappy_1.png';
-                break;
-            case 3:
-                image = './image/flappy_2.png';
-                break;
-            case 4:
-                image = './image/flappy_3.png';
-                break;
-            case 5:
-                image = './image/flappy_4.png';
-                break;
-            case 6:
-                image = './image/flappy_5.png';
-                break;
-        }
-        return image;
-    }
     if(GameArea.frameNo == 1 || obsAppearCondition()){
         x = GameArea.canvas.width;
         minHeight = 20;
@@ -113,7 +62,7 @@ function updateGameArea(){
         flappy_Bird.push(flappyBird);
     }
     if(order && GameArea.score > 3){
-        let bullet1 = new Component(bullet_Width, bullet_Width,bulletType(), player.x + player.width, player.y, 'image')
+        let bullet1 = new Component(bullet_Width, bullet_Width, bulletType(), player.x, player.y + player.height/2, 'image');
         bullet.push(bullet1);
         GameArea.score -= 1;
         order = false;
@@ -127,7 +76,7 @@ function updateGameArea(){
         bullet[i].update();
     }
     for( let i=0; i<flappy_Bird.length; i++) {
-        flappy_Bird[i].speedX = -2;
+        flappy_Bird[i].speedX = -2.5;
         flappy_Bird[i].newPosition();
         flappy_Bird[i].update();
     }
@@ -135,7 +84,7 @@ function updateGameArea(){
         if(GameArea.score >10){
             obstacles[i].speedX = -1-(GameArea.score-(GameArea.score%10))/10*0.2;
         } else {
-            obstacles[i].speedX = -1;
+            obstacles[i].speedX = -1.2;
         }
         obstacles[i].newPosition();
         obstacles[i].update()
@@ -148,13 +97,13 @@ function updateGameArea(){
             obstaclesInvisible.splice(i,1);
             break;
         }
-            if(GameArea.score <= 0){
-                GameArea.score = 0;
-            }
-            if(GameArea.score > highesScore){
-                highesScore = parseInt(GameArea.score);
-                localStorage.setItem('hightScore1', parseInt(GameArea.score))
-            }
+    }
+    if(GameArea.score <= 0){
+        GameArea.score = 0;
+    }
+    if(GameArea.score > highesScore){
+        highesScore = parseInt(GameArea.score);
+        localStorage.setItem('hightScore1', parseInt(GameArea.score))
     }
     myScore.text = 'SCORE: ' + GameArea.score.toFixed(1);
     highestSocre.text = 'HIGHEST SCORE : ' + Number(highesScore).toFixed(1);
