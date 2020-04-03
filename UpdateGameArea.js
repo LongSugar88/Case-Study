@@ -62,7 +62,7 @@ function updateGameArea(){
         obstaclesInvisible.push(obstacle1);
         flappy_Bird.push(flappyBird);
     }
-    if(order && GameArea.score > 3){
+    if(order && GameArea.score > 0){
         let bullet1 = new Component(bullet_Width, bullet_Width, bulletType(), player.x-player.width/4, player.y+player.height/2-bullet_Width/2, 'image');
         bullet.push(bullet1);
         GameArea.score -= 1;
