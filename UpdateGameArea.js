@@ -72,7 +72,7 @@ function updateGameArea(){
         order = false
     }
     for( let i=0; i<bullet.length; i++){
-        bullet[i].speedX = 8;
+        bullet[i].speedX = 4;
         bullet[i].newPosition();
         bullet[i].update();
     }
