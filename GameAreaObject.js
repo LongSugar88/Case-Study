@@ -61,13 +61,13 @@ function pauseMusic() {
     if(keyAudio){
         console.log('true play music ' +key);
         // clearInterval(GameArea.interval);
-        musicTheme.mute()
+        musicTheme.play()
         return;
     } else {
         console.log('false stop music ' + key);
         // setTimeout(GameArea.intervalTime, 1);
+        musicTheme.mute()
 
-        musicTheme.play()
         return;
     }
 };
