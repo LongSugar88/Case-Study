@@ -54,3 +54,12 @@ let Component = function (width, height, color, x, y, type){
         return dive
     };
 };
+let MusicTheme = function () {
+        let audio = document.getElementById('sound');
+        this.play = function () {
+            audio.play();
+        }
+        this.mute = function () {
+            audio.pause()
+        }
+    }

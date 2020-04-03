@@ -71,3 +71,16 @@ function randomNumber(max, min) {
     let random = Math.floor(Math.random()*(max-min+1)+min);
     return random
 }
+// function Sound(src) {
+//     this.sound = document.getElementById("sound");
+//     this.sound.src = src;
+//     this.sound.setAttribute("preload", "auto");
+//     this.sound.setAttribute("controls", "none");
+//     this.sound.style.display = "none";
+//     this.play = function(){
+//         this.sound.play();
+//     }
+//     this.stop = function(){
+//         this.sound.pause();
+//     }
+// }

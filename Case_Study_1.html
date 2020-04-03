@@ -17,6 +17,7 @@
     <script src="changeImage.js"></script>
 </head>
 <body onload="startGame()" onkeydown="moveKey(event)">
+<audio id = 'sound' autoplay src="./audio/HodomoeCity.mp3" loop></audio>
 <textarea name="" id="" cols="42" rows="28">
     - Press "Enter" to fire a bullet, press "Ctrl" to Pause/Resume game, use the arrows on keyboard to move Top, Down, Left, Right
 
@@ -35,6 +36,7 @@
 <div style="text-align: center; width: 630px">
     <button onmousedown="location.reload()"  style=" width: 180px; height: 40px; color: black; background-color: yellow" ><b>PLAY</b></button>
     <button onmousedown="changeKey()" onmouseup="pauseGame()" style=" width: 180px; height: 40px; color: yellow; background-color: black" ><b>PAUSE</b></button>
+    <button onmousedown="changeKeyAudio()" onmouseup="pauseMusic()" style=" width: 180px; height: 40px; color: red; background-color: white" ><b>MUSIC ON/OFF</b></button>
 </div>
 <div style="text-align: center; width: 630px; border:1px; border-color: #bd0b00" >
 

@@ -33,6 +33,17 @@ function changeKey(){
         return key;
     }
 };
+function changeKeyAudio(){
+    if(keyAudio){
+        keyAudio = false;
+        console.log('change true to false ' +key);
+        return keyAudio;
+    } else {
+        keyAudio = true;
+        console.log('change false to true ' +key);
+        return keyAudio;
+    }
+};
 function pauseGame() {
     if(key){
         console.log('true stop game ' +key);
@@ -43,6 +54,20 @@ function pauseGame() {
         console.log('false resume game ' + key);
         // setTimeout(GameArea.intervalTime, 1);
         updateGameArea()
+        return;
+    }
+};
+function pauseMusic() {
+    if(keyAudio){
+        console.log('true play music ' +key);
+        // clearInterval(GameArea.interval);
+        musicTheme.play()
+        return;
+    } else {
+        console.log('false stop music ' + key);
+        // setTimeout(GameArea.intervalTime, 1);
+        musicTheme.mute()
+
         return;
     }
 };

@@ -4,10 +4,11 @@ function startGame() {
     background = new Component(BACKGROUND_WIDTH, BACKGROUND_HEIGHT, './image/background.jpg', 0, 0, 'background');
     myScore = new Component('30px','Consolas','white', 480, 40,'text');
     highestSocre = new Component('30px','Consolas','white', 20, 40,'text');
+    musicTheme = new MusicTheme()
     GameArea.start()
     updateGameArea()
-    // GameArea.intervalTime()
 }
+// GameArea.intervalTime()
 let order = false;
 function imperialOrder() {
     order = true;
