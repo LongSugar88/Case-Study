@@ -8,7 +8,6 @@ function startGame() {
     GameArea.start()
     updateGameArea()
 }
-// GameArea.intervalTime()
 let order = false;
 function imperialOrder() {
     order = true;

@@ -72,7 +72,7 @@ function updateGameArea(){
         order = false
     }
     for( let i=0; i<bullet.length; i++){
-        bullet[i].speedX = 3;
+        bullet[i].speedX = 8;
         bullet[i].newPosition();
         bullet[i].update();
     }
@@ -83,7 +83,7 @@ function updateGameArea(){
     }
     for(let i=0; i<obstacles.length; i++){
         if(GameArea.score >10){
-            obstacles[i].speedX = -1-(GameArea.score-(GameArea.score%10))/10*0.2;
+            obstacles[i].speedX = -1-(GameArea.score-(GameArea.score%1))/1*0.2;
         } else {
             obstacles[i].speedX = -1.2;
         }
